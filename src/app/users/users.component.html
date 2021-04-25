@@ -1,0 +1,13 @@
+<div class="container">
+    <h2>Users</h2>
+    <h2>{{errorMessage}}</h2>
+    <div class="card-columns">
+        <div *ngFor="let user of Users" class="card bg-success text-light">
+            <div class="card-body text-center">
+                <p class="card-text">{{user.name}}</p>
+                <p class="card-text">{{user.username}}</p>
+                <p class="card-text">{{user.email}}</p>
+            </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,52 @@
+<div class="container">
+ 
+    <h1>{{storeName | uppercase}}</h1>
+    <img style="max-width:200px" [src]="storeLogo"/>.
+    <h3 *ngIf="isDiscount()">We offer an explicit discount of {{Discount|addpercent}}</h3>.
+   
+    <select name="categories" id="categories" >
+        <option *ngFor="let category of categoryList " value="category.name">{{category.name}}</option>
+      </select>
+
+      <h2 *ngIf="isPurshased  else elseBlock">
+        Thanks for purchasing from our Store {{clientName}}
+    </h2>
+    <button class="btn btn-warning" (click)=" rendreValues()">Get Products</button>
+    <button class="btn btn-danger" (click)=" gotToWithDis()">Products With Discount</button>
+    <button class="btn btn-danger" (click)=" gotToWithNoDis()">Products Without Discount</button>
+    <router-outlet></router-outlet>
+
+    <div *ngIf="isPurshased" ><button (click)="switchIsPurshased()" class="btn btn-danger">Undo</button></div>
+    <ng-template #elseBlock>
+        <table *ngIf="isProductsLoaded" class="table">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Discount</th>
+                <th>Image</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of productList ">
+                <td>{{product.id}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.quantity}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.discount}}</td>
+                <td>{{product.image}}</td>
+                <td><button (click)="switchIsPurshased()" class="btn btn-danger">Buy</button></td>
+              </tr>
+            </tbody>
+          </table>
+    </ng-template>
+      <input (change)="sendToFooter($event)" type="text" [(ngModel)]="clientName" >
+{{clientName}}
+
+
+</div>
+
+    
